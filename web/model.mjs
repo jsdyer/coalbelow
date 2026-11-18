@@ -1,7 +1,8 @@
-// Keep transformations separate from the DOM so they can be tested directly.
-export function cleanLines(text) {
-  if (typeof text !== 'string') throw new TypeError('Expected text');
-  const lines = text.split(/\r\n|\r|\n/).map(line => line.trim()).filter(Boolean);
-  const unique = [...new Set(lines)];
-  return { text: unique.join('\n'), count: unique.length, removed: lines.length - unique.length };
+const combined = "Sydney Mines - Florence - Point Aconi";
+export function groupArea(area) {
+  return ["Sydney Mines", "Florence", "Point Aconi"].includes(area) ? combined : area;
+}
+export function recordsFor(features, area, kinds) {
+  return features.filter(({properties:p}) => (!area || groupArea(p.area) === area) && kinds.includes(p.kind))
+    .sort((a,b) => a.properties.name.localeCompare(b.properties.name) || a.properties.id.localeCompare(b.properties.id, "en", {numeric:true}));
 }

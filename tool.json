@@ -1,16 +1,38 @@
 {
-  "id": "coolcode-tool-template",
-  "title": "CoolCode Tool Starter",
-  "description": "A browser-only example that trims lines and removes exact duplicates.",
-  "category": "security",
-  "tags": ["text", "lines", "duplicates"],
-  "icon": "scan-search",
-  "url": "/coolcode-tool-template/",
-  "source": "https://github.com/jsdyer/coolcode-tool-template",
+  "id": "coalbelow",
+  "title": "Coal Below",
+  "description": "Explore Nova Scotia’s mapped underground coal workings alongside coal seams and present-day streets.",
+  "category": "places",
+  "tags": [
+    "Nova Scotia",
+    "coal",
+    "mines",
+    "geology",
+    "history"
+  ],
+  "icon": "map",
+  "url": "/coalbelow/",
+  "source": "https://github.com/jsdyer/coalbelow",
   "hosting": "project",
   "access": "browser",
   "data_info": {
-    "mode": "local",
-    "detail": "The browser reads the text you paste and compares its lines."
+    "mode": "snapshot",
+    "detail": "Nova Scotia Geological Survey lines trace coal seams and polygons outline recorded underground workings.",
+    "cadence": "Monthly",
+    "probes": [
+      {
+        "label": "Data retrieved",
+        "url": "https://coolcode.ca/coalbelow/data/index.json",
+        "path": [
+          "retrieved"
+        ],
+        "count_at": {
+          "path": [
+            "count"
+          ],
+          "unit": "mapped features"
+        }
+      }
+    ]
   }
 }

@@ -1,33 +1,9 @@
-<!doctype html>
-<html lang="en-CA">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="{{DESCRIPTION}}">
-  <title>{{TITLE}} · CoolCode</title>
-  <link rel="stylesheet" href="./style.css">
-  <script type="module" src="./app.mjs"></script>
-</head>
-<body data-tool-id="{{TOOL_ID}}">
-  <a class="skip" href="#main">Skip to content</a>
-  <header><a href="https://coolcode.ca/">← CoolCode.ca</a><a href="{{SOURCE_URL}}">Source &amp; instructions ↗</a></header>
-  <main id="main">
-    <p class="eyebrow">Browser tool starter</p>
-    <h1>{{TITLE}}</h1>
-    <p class="intro">{{DESCRIPTION}}</p>
-    <section aria-labelledby="example-title">
-      <h2 id="example-title">Clean a list</h2>
-      <p>Trim spaces, skip blank lines and remove exact duplicates. Capitalization stays distinct.</p>
-      <div class="panels">
-        <div><label for="input">Your lines</label><textarea id="input" rows="10" maxlength="100000" spellcheck="false" placeholder="Paste one item per line"></textarea></div>
-        <div><label for="output">Cleaned lines</label><textarea id="output" rows="10" readonly spellcheck="false"></textarea></div>
-      </div>
-      <div class="actions"><button id="sample" type="button">Load example</button><button id="clear" type="button">Clear</button><button id="copy" type="button" hidden>Copy result</button></div>
-      <p id="status" role="status" aria-live="polite">Paste a list to begin.</p>
-      <noscript><p>This tool needs JavaScript to process your text. The source is available above.</p></noscript>
-    </section>
-    <aside aria-label="Privacy"><strong>Stays on your device.</strong> This example makes no API requests and does not save your text. Reloading clears it.</aside>
-  </main>
-  <footer>Part of <a href="https://coolcode.ca/">the CoolCode collection</a>.</footer>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{{TITLE}} · CoolCode</title><meta name="description" content="{{DESCRIPTION}}"><link rel="stylesheet" href="./vendor/leaflet.css"><link rel="stylesheet" href="./style.css"></head>
+<body data-tool="{{TOOL_ID}}"><main><nav><a href="https://coolcode.ca/">CoolCode</a><span>Nova Scotia · Geology</span></nav>
+<header><h1>{{TITLE}}</h1><p>{{DESCRIPTION}}</p></header>
+<section class="panel"><div class="controls"><label>Coal area<select id="area"></select></label><fieldset><legend>Map layers</legend><label><input type="checkbox" id="seam" checked> Coal seams</label><label><input type="checkbox" id="workings" checked> Underground workings</label><label><input type="checkbox" id="streets"> Show streets</label></fieldset></div>
+<div id="map" aria-label="Map of coal seams and underground workings"></div>
+<div class="legend"><span class="line"></span> Seams <span class="swatch"></span> Workings <span id="summary" aria-live="polite">Loading provincial record…</span></div></section>
+<section class="record"><div><label for="feature">Inspect a mapped feature</label><select id="feature"></select></div><div id="detail" aria-live="polite">Choose an outline or seam on the map or from the list.</div></section>
+<footer><h2>Reading the map</h2><p>Seam lines mark mapped coal beds. Shaded outlines show the extent of known underground workings. A gap can mean the province lacks a record. This overview cannot establish conditions beneath a property.</p><p id="stamp"></p><p><a href="https://novascotia.ca/natr/meb/download/dp120.asp">Provincial dataset and map documentation</a> · <a href="{{SOURCE_URL}}">Project and methods</a></p><p>Contains information licensed under the <a href="https://novascotia.ca/opendata/licence.asp">Open Government Licence – Nova Scotia</a>.</p></footer></main>
+<script src="./vendor/leaflet.js"></script><script type="module" src="./app.mjs"></script></body></html>

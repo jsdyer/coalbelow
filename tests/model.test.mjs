@@ -1,21 +1,17 @@
-import test from 'node:test';
-import assert from 'node:assert/strict';
-import { cleanLines } from '../web/model.mjs';
-test('trims, removes blanks and preserves first-seen order', () => {
-  assert.deepEqual(cleanLines('  Halifax\nLangley\nHalifax\n\nVancouver  '), {
-    text: 'Halifax\nLangley\nVancouver', count: 3, removed: 1,
-  });
+import test from "node:test";
+import assert from "node:assert/strict";
+import {readFileSync} from "node:fs";
+import {gunzipSync} from "node:zlib";
+import {groupArea,recordsFor} from "../web/model.mjs";
+const rows = JSON.parse(gunzipSync(readFileSync(new URL("../web/data/features.geojson.gz",import.meta.url)))).features;
+const meta = JSON.parse(readFileSync(new URL("../web/data/index.json",import.meta.url)));
+test("Snapshot totals match the two mapped layers",()=>{
+  assert.equal(rows.length, meta.count);
+  assert.equal(recordsFor(rows,"",["seam"]).length,meta.seams);
+  assert.ok(rows.every(f=>f.geometry?.coordinates.length));
 });
-test('supports Windows and old Mac line endings', () => {
-  assert.equal(cleanLines('a\r\nb\ra').text, 'a\nb');
+test("Combined Cape Breton seam area retains its component workings",()=>{
+  const subset = recordsFor(rows,groupArea("Florence"),["workings"]);
+  assert.deepEqual(new Set(subset.map(f=>f.properties.area)),new Set(["Florence","Point Aconi","Sydney Mines"]));
+  assert.deepEqual(recordsFor(rows,"Springhill",[]),[]);
 });
-test('empty text and whitespace produce an empty result', () => {
-  assert.deepEqual(cleanLines(' \n\t'), { text: '', count: 0, removed: 0 });
-});
-test('preserves case and Unicode', () => {
-  assert.equal(cleanLines('Québec\nquébec\n東京\nQuébec').text, 'Québec\nquébec\n東京');
-});
-test('treats markup as ordinary text', () => {
-  assert.equal(cleanLines('<script>alert(1)</script>\n<script>alert(1)</script>').text, '<script>alert(1)</script>');
-});
-test('rejects non-text input', () => { assert.throws(() => cleanLines(null), TypeError); });
