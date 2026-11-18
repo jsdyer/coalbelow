@@ -32,6 +32,13 @@
           ],
           "unit": "mapped features"
         }
+      },
+      {
+        "url": "https://coolcode.ca/coalbelow/data/index.json",
+        "label": "Provincial edition",
+        "path": [
+          "edition"
+        ]
       }
     ]
   }
