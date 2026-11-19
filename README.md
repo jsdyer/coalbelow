@@ -8,6 +8,8 @@ Explore Nova Scotia Geological Survey records of coal seams and underground mini
 In Springhill, toggle the seam lines and shaded workings separately, then select a workings outline to read its mapped area and mine-plan note. The three Sydney Mines, Florence and Point Aconi workings areas share a seam layer and appear together in the area selector.
 <!-- /coolcode:guide -->
 
+For the fossils documented in the Joggins Formation, see [Fossil Neighbours](https://coolcode.ca/fossilneighbours/?formation=Joggins).
+
 ## Data and interpretation
 
 The province distributes the two layers together as [Digital Product ME 120, Nova Scotia Coal Seams and Underground Mine Workings](https://novascotia.ca/natr/meb/download/dp120.asp). The initial October 2026 edition includes 257 coal seam segments and 109 underground workings outlines. The retrieval date records the last successful source download. The edition date is the province’s date for the dataset. These dates can differ.
