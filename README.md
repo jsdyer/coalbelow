@@ -2,10 +2,10 @@
 
 [Explore the map](https://coolcode.ca/coalbelow/)
 
-Explore Nova Scotia Geological Survey records of coal seams and underground mining. Start in Springhill, switch to another coal area or view all the mapped features in the province. Click a feature or choose it from the list to see its provincial identifier. Optional street tiles show the modern landscape.
+Explore Nova Scotia Geological Survey records of coal seams and underground mining. Start in Springhill, switch to another coal area or view all the mapped features in the province. Click a feature or choose it from the list to see its provincial identifier. Street tiles show the modern landscape.
 
 <!-- coolcode:guide -->
-In Springhill, toggle the seam lines and shaded workings separately, then select a workings outline to read its mapped area and mine-plan note. The three Sydney Mines, Florence and Point Aconi workings areas share a seam layer and appear together in the area selector.
+Start with modern streets and landmarks beneath the Springhill coalfield. Toggle the seam lines and shaded workings separately, then select a workings outline to read its mapped area and mine-plan note. The three Sydney Mines, Florence and Point Aconi workings areas share a seam layer and appear together in the area selector.
 <!-- /coolcode:guide -->
 
 For the fossils documented in the Joggins Formation, see [Fossil Neighbours](https://coolcode.ca/fossilneighbours/?formation=Joggins).
@@ -16,7 +16,7 @@ The province distributes the two layers together as [Digital Product ME 120, Nov
 
 Seam names and area labels come from the source. Each workings polygon retains its county, plan-availability note, and area in hectares, converted from the published square-metre field before simplification. A digitized outline can represent more than one mine. The province describes gaps and uncertainty in the source records. Use the provincial documentation for history, survey references and advice on interpreting the dataset. The map cannot establish mining hazards or conditions at an individual property.
 
-The refresh discovers the published shapefile ZIP, extracts the two named layers, simplifies with a six-metre tolerance in the projected source coordinates, transforms to WGS 84 and rounds to five decimal places. These steps keep the browser download small. The original ZIP retains the full resolution. Provincial geometry loads from the site. Enabling streets requests visible map tiles from OpenStreetMap and reveals the viewed area to that provider. The app stores no user selections. Map rendering uses vendored Leaflet 1.9.4 with its BSD-2-Clause license in web/vendor.
+The refresh discovers the published shapefile ZIP, extracts the two named layers, simplifies with a six-metre tolerance in the projected source coordinates, transforms to WGS 84 and rounds to five decimal places. These steps keep the browser download small. The original ZIP retains the full resolution. Provincial geometry loads from the site. Streets are on by default and can be switched off. Displaying streets requests visible map tiles from OpenStreetMap and reveals the viewed area to that provider. The app stores no user selections. Map rendering uses vendored Leaflet 1.9.4 with its BSD-2-Clause license in web/vendor.
 
 ## Maintenance
 

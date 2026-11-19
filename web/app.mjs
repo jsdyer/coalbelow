@@ -1,8 +1,9 @@
+import {streetMap} from './streets.mjs';
 import {groupArea, recordsFor} from "./model.mjs";
 const get = id => document.getElementById(id);
 const area = get("area"), feature = get("feature"), detail = get("detail");
 const map = L.map("map", {scrollWheelZoom:false}).setView([45.5,-62.6],7);
-const tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom:19, attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'});
+const tiles = streetMap(map);
 map.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
 L.control.scale({imperial:false}).addTo(map);
 map.createPane("seams").style.zIndex = 415;
@@ -61,5 +62,6 @@ async function load() {
   feature.addEventListener("change", () => inspect(feature.value,true));
   get("stamp").textContent = "Nova Scotia Geological Survey · Edition " + meta.edition + " · Retrieved " + meta.retrieved + ". Province-wide, " + meta.seams + " seam segments and " + (meta.count-meta.seams) + " workings outlines.";
   draw();
+  if (get('streets').checked) tiles.addTo(map);
 }
 load().catch(() => { get("summary").textContent = "Could not load the provincial map. Reload in a current browser or open the source below."; });
