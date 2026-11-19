@@ -29,10 +29,23 @@ def main():
                 page = browser.new_page(viewport={"width": 1280, "height": 1000})
                 errors = []
                 page.on("pageerror", lambda error: errors.append(str(error)))
+                page.route("https://tile.openstreetmap.org/**", lambda route: route.abort())
                 page.goto(f"http://127.0.0.1:{server.server_port}/example-tool/")
                 page.wait_for_selector("#area option[value=Springhill]", state="attached")
+                page.locator("#tile-notice").wait_for()
+                page.unroute("https://tile.openstreetmap.org/**")
+                tile = '<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256"><rect width="256" height="256" fill="#cadfc9"/></svg>'
+                page.route("https://tile.openstreetmap.org/**", lambda route: route.fulfill(content_type="image/svg+xml", body=tile))
+                page.locator("#retry-tiles").click()
+                page.wait_for_selector("img.leaflet-tile-loaded")
+                assert page.locator("#tile-notice").is_hidden()
                 assert "mapped features" in page.locator("#summary").inner_text()
                 assert page.locator("#map svg path").count() > 0
+                assert page.locator("#streets").is_checked()
+                assert page.locator("#map .leaflet-tile").count() > 0
+                page.locator("#streets").uncheck()
+                assert page.locator("#map .leaflet-tile").count() == 0
+                page.locator("#streets").check()
                 page.locator("#area").select_option("Donkin")
                 page.locator("#feature").select_option(index=1)
                 assert "Donkin" in page.locator("#detail").inner_text()

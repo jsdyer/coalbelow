@@ -1,7 +1,7 @@
 {
   "id": "coalbelow",
   "title": "Coal Below",
-  "description": "Explore Nova Scotia’s mapped underground coal workings alongside coal seams and present-day streets.",
+  "description": "Explore Nova Scotia coal seams and underground workings against modern streets, then inspect the original provincial records.",
   "category": "places",
   "tags": [
     "Nova Scotia",
@@ -17,7 +17,7 @@
   "access": "browser",
   "data_info": {
     "mode": "snapshot",
-    "detail": "Nova Scotia Geological Survey lines trace coal seams and polygons outline recorded underground workings.",
+    "detail": "Nova Scotia Geological Survey coal seam and mine workings layers appear over an OpenStreetMap basemap.",
     "cadence": "Monthly",
     "probes": [
       {
