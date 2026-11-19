@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Build a browser tool using Python's standard library; no network required."""
+from hashlib import sha256
 from html import escape
 import json
 from pathlib import Path
@@ -53,6 +54,8 @@ def build(root=ROOT):
         shutil.copytree(web, stage)
         index = stage / "index.html"
         page = index.read_text(encoding="utf-8")
+        module_version = sha256((stage / "app.mjs").read_bytes()).hexdigest()[:12]
+        page = page.replace('src="./app.mjs"', f'src="./app.mjs?v={module_version}"')
         for token, key in {"TITLE": "title", "DESCRIPTION": "description", "TOOL_ID": "id", "SOURCE_URL": "source"}.items():
             placeholder = "{{" + token + "}}"
             if placeholder not in page:
