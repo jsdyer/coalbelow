@@ -20,7 +20,7 @@ jobs:
       revision: ${{ steps.persist.outputs.revision }}
       changed: ${{ steps.persist.outputs.changed }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: main
       - uses: actions/setup-python@v6
