@@ -23,3 +23,11 @@ The refresh discovers the published shapefile ZIP, extracts the two named layers
 A monthly GitHub Actions job retrieves and validates the provincial archive and publishes the resulting snapshot. The previous published site stays available if the job fails. On a system with GDAL installed, run `python3 scripts/refresh.py` to retrieve current data. Update the short source description in tool.json and the marked guide above when the features or coverage change.
 
 Run `node --test tests/*.test.mjs`, `python3 -m unittest discover -s tests -v`, and `python3 scripts/build.py`. Serve dist with `python3 -m http.server 8000 --directory dist`. CI also verifies feature selection, filtering and the mobile layout in Chromium.
+
+<!-- schedule-reliability -->
+## Schedule reliability
+
+Public GitHub repositories can have scheduled workflows disabled after 60 days of inactivity. A separate weekly [schedule guard](.github/workflows/schedule-guard.yml) calls GitHub's enable-workflow API for an explicit list of refresh workflows and itself. It can restore workflows disabled for inactivity, preserves manually disabled workflows, and runs independently of collection failures.
+
+This is an interim mitigation, not a scheduling guarantee: GitHub does not document active-workflow renewal as a permanent exemption, and scheduled runs can be delayed or dropped. A scheduler on our own Linux server is the planned independent trigger. The guard does not collect data, create dummy commits, or change source/check timestamps; successful collection and published data freshness still need monitoring.
+<!-- /schedule-reliability -->
